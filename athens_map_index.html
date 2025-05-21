@@ -44,7 +44,7 @@ map.setMaxBounds([
 
     let marker = null;
 
-    map.on('click', (e) => {
+    map.on('click', (e) => { 
       const lng = e.lngLat.lng.toFixed(5);
       const lat = e.lngLat.lat.toFixed(5);
       document.getElementById('info').innerText = `Lat: ${lat}, Lng: ${lng}`;
