@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Pick a Location in Athens</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
+  <style>
+    body { margin: 0; padding: 0; }
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+    #info {
+      position: absolute;
+      background: white;
+      padding: 10px;
+      z-index: 1;
+      top: 10px;
+      left: 10px;
+      font-family: sans-serif;
+      box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div id="info">Click on the map. Coordinates will appear here.</div>
+  <div id="map"></div>
+
+  <script>
+    mapboxgl.accessToken = 'pk.eyJ1IjoiZWxlbmFrb3V0c2FyaSIsImEiOiJjbWF4cjI0ZHAwMWN6MnJyMm95NW54OWJnIn0.s-dP7eBblzaRGEtjrHdJeg';
+    const map = new mapboxgl.Map({
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v12',
+      center: [23.7275, 37.9838], // Athens
+      zoom: 13
+    });
+
+    let marker = null;
+
+    map.on('click', (e) => {
+      const lng = e.lngLat.lng.toFixed(5);
+      const lat = e.lngLat.lat.toFixed(5);
+      document.getElementById('info').innerText = `Lat: ${lat}, Lng: ${lng}`;
+
+      if (marker) marker.remove();
+      marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
+    });
+  </script>
+</body>
+</html>
