@@ -30,17 +30,17 @@
    const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
-  center: [23.7275, 37.9838], // Athens
-  zoom: 13,
-  minZoom: 12,
+  center: [23.75, 38.0],   // Centered over Attica
+  zoom: 10,
+  minZoom: 8,
   maxZoom: 17
 });
 
-// ✅ Restrict the view to Athens
 map.setMaxBounds([
-  [23.65, 37.90], // Southwest corner
-  [23.85, 38.05]  // Northeast corner
+  [23.1, 37.5],   // Bottom-left
+  [24.2, 38.6]    // Top-right
 ]);
+
 
     let marker = null;
 
