@@ -27,12 +27,20 @@
 
   <script>
     mapboxgl.accessToken = 'pk.eyJ1IjoiZWxlbmFrb3V0c2FyaSIsImEiOiJjbWF4cjI0ZHAwMWN6MnJyMm95NW54OWJnIn0.s-dP7eBblzaRGEtjrHdJeg';
-    const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v12',
-      center: [23.7275, 37.9838], // Athens
-      zoom: 13
-    });
+   const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/mapbox/streets-v12',
+  center: [23.7275, 37.9838], // Athens
+  zoom: 13,
+  minZoom: 12,
+  maxZoom: 17
+});
+
+// ✅ Restrict the view to Athens
+map.setMaxBounds([
+  [23.65, 37.90], // Southwest corner
+  [23.85, 38.05]  // Northeast corner
+]);
 
     let marker = null;
 
@@ -42,7 +50,9 @@
       document.getElementById('info').innerText = `Lat: ${lat}, Lng: ${lng}`;
 
       if (marker) marker.remove();
-      marker = new mapboxgl.Marker().setLngLat([lng, lat]).addTo(map);
+     marker = new mapboxgl.Marker({ color: 'red' })
+  .setLngLat([lng, lat])
+  .addTo(map);
     });
   </script>
 </body>
