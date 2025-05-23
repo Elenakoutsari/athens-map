@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
+ <!--meta-information /resources the page needs (CSS, JS, title...)--> 
 <head>
+  
+  <!-- Character encoding set as UTF-8 -->
   <meta charset="utf-8" />
+  <!-- Title -->
   <title>Pick a Location in Athens</title>
+  
+ <!-- We need thee page to be responsive on mobile devices --> setting zoom behavior -->
   <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+ <!-- Include the Mapbox GL JavaScript library from a Content Delivery Network (CDN)-->
   <script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+  <!-- Include the Mapbox GL CSS stylesheet for proper map styling-->
   <link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-  <style>
-    body { margin: 0; padding: 0; }
-    #map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+  <!--=== Custom styles for the page ===-->
+  <style> 
+    
+    body { margin: 0; padding: 0; } /* Remove default spacing to avoid white space around the map */
+    #map { position: absolute; top: 0; bottom: 0; width: 100%; } /*  map fills the entire screen */
+    
+    /* Coordinates display*/
     #info {
       position: absolute;
       background: white;
@@ -21,17 +34,24 @@
     }
   </style>
 </head>
+  
 <body>
+  
+  <!-- floating box to display clicked coordinates-->
   <div id="info">Click on the map. Coordinates will appear here.</div>
+  <!--Container where the Mapbox map will be rendered ( like a blank canvas)-->
   <div id="map"></div>
 
   <script>
+    /*Mapbox access token*/
     mapboxgl.accessToken = 'pk.eyJ1IjoiZWxlbmFrb3V0c2FyaSIsImEiOiJjbWF4cjI0ZHAwMWN6MnJyMm95NW54OWJnIn0.s-dP7eBblzaRGEtjrHdJeg';
+    
+   /*===Initialize Map===*/
    const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
   center: [23.75, 38.0],   // Centered over Attica
-  zoom: 10,
+  zoom: 13, /* Initial zoom level*/
   minZoom: 8,
   maxZoom: 20
 });
