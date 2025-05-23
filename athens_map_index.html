@@ -1,6 +1,10 @@
+
+
+
+
 <!DOCTYPE html>
 <html>
- <!--meta-information /resources the page needs (CSS, JS, title...)--> 
+<!--meta-information /resources the page needs (CSS, JS, title...)--> 
 <head>
   
   <!-- Character encoding set as UTF-8 -->
@@ -43,10 +47,10 @@
   <div id="map"></div>
 
   <script>
-    /*Mapbox access token*/
+    //Mapbox access token
     mapboxgl.accessToken = 'pk.eyJ1IjoiZWxlbmFrb3V0c2FyaSIsImEiOiJjbWF4cjI0ZHAwMWN6MnJyMm95NW54OWJnIn0.s-dP7eBblzaRGEtjrHdJeg';
     
-   /*===Initialize Map===*/
+   //===Initialize Map===
    const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/mapbox/streets-v12',
@@ -61,15 +65,17 @@ map.setMaxBounds([
   [24.2, 38.6]    // Top-right
 ]);
 
-
+//===Marker===
     let marker = null;
-
+//When clicked hold coordinates
     map.on('click', (e) => { 
       const lng = e.lngLat.lng.toFixed(5);
       const lat = e.lngLat.lat.toFixed(5);
+     //Update the #info div to show the clicked coordinates.
       document.getElementById('info').innerText = `Lat: ${lat}, Lng: ${lng}`;
-
+// Only one markker at a time
       if (marker) marker.remove();
+     // Create new red marker and add it to the map
      marker = new mapboxgl.Marker({ color: 'red' })
   .setLngLat([lng, lat])
   .addTo(map);
